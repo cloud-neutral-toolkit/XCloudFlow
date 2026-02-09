@@ -24,6 +24,13 @@ func Execute() {
 func init() {
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 
+	rootCmd.PersistentFlags().StringVar(
+		&DSN,
+		"dsn",
+		os.Getenv("DATABASE_URL"),
+		"PostgreSQL DSN for xcf.* state/memory (defaults to DATABASE_URL)",
+	)
+
 	// 注册全局标志（所有子命令可用）
 	rootCmd.PersistentFlags().BoolVarP(
 		&AggregateOutput,

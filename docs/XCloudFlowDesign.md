@@ -162,6 +162,9 @@ spec:
 - **审批与观察窗**：生产环境执行需审批，完成后进入观察窗，监测 Metrics/SLO 正常才关闭变更。
 - **回写与审计**：计划、执行结果、快照 ID 及外部链接均写回 PR 评论；State 记录全量审计轨迹（who/when/what/result/diff/metrics）。
 
+> StackFlow (Go Runner, MCP/skills/plugins, Agent mode, Cloud Run stateless) docs: `docs/stackflow/README.md`
+
+
 ## 5. 控制面协同
 
 1. **API / CLI**：提供 PR 检查、手动调谐、回滚触发、预算查询等接口。
