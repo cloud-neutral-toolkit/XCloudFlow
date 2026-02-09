@@ -7,4 +7,5 @@ var (
 	DiffMode        bool   // --diff / -D
 	InventoryPath   string // --inventory / -i
 	MaxWorkers      int    // --forks / -f
+	DSN             string // --dsn (defaults to DATABASE_URL)
 )
