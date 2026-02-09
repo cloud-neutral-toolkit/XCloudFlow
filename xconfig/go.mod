@@ -1,14 +1,12 @@
 module xconfig
 
-go 1.23.0
-
-toolchain go1.23.9
+go 1.24.0
 
 require (
 	github.com/jackc/pgx/v5 v5.7.6
 	github.com/pmezard/go-difflib v1.0.0
 	github.com/spf13/cobra v1.9.1
-	golang.org/x/crypto v0.38.0
+	golang.org/x/crypto v0.45.0
 	gopkg.in/yaml.v3 v3.0.1 // ✅ 建议加注释
 )
 
@@ -28,7 +26,7 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
 	github.com/spf13/pflag v1.0.6 // indirect
-	golang.org/x/sync v0.14.0 // indirect
-	golang.org/x/sys v0.33.0 // indirect
-	golang.org/x/text v0.25.0 // indirect
+	golang.org/x/sync v0.18.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/text v0.31.0 // indirect
 )
