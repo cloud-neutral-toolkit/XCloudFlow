@@ -158,3 +158,45 @@ StackFlow Runner 是更窄的“业务栈编排器”，可以对齐为：
 - **State**：GitHub artifacts +（未来）远端 state service（Postgres/GCS）
 
 因此 StackFlow 可以作为 XCloudFlow 在 Cloud-Neutral Toolkit 生态中的“落地子集”。
+
+
+## 9. External Skills 支持（读取外部 skills）
+
+需求：skills 不仅能读当前 repo 的 `skills/`，还要能读取外部 skills（本地目录、git 仓库、HTTP）。
+
+建议实现：
+
+- 技能源（sources）概念：`local|git|http`
+- 技能加载顺序：
+  1. repo-local `./skills/*/SKILL.md`
+  2. 外部 sources（按优先级覆盖）
+- 缓存：在 Cloud Run 模式下，外部 skills 的拉取结果应缓存到 PostgreSQL（避免容器重启丢失）
+
+详见：`skills.md`
+
+## 10. Agent 模式（状态/记忆存 PostgreSQL）
+
+XCloudFlow 支持 Agent 模式运行：
+
+- 作为常驻 worker 定时/事件驱动执行 `validate/plan/apply`
+- 维护“记忆”（上次执行结果、漂移、告警、外部 MCP tools cache、技能缓存）
+
+约束：
+
+- XCloudFlow 服务本身保持无状态
+- 所有状态/记忆写入 `postgresql.svc.plus`
+
+Schema：`sql/schema.sql`
+
+详见：`agent-mode.md`
+
+## 11. Cloud Run 无状态部署
+
+原则：
+
+- 控制面无状态（多实例水平扩展）
+- 状态与审计：PostgreSQL
+- artifacts（plan/json/日志快照）：建议落到对象存储（GCS/S3）或由 CI artifacts 管理
+- secrets：Cloud Run Secret Manager / GitHub OIDC（不要长期 key）
+
+这使得 XCloudFlow 可以作为 Cloud Run 服务运行，同时也可作为 MCP server 提供对外能力。

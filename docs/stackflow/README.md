@@ -15,6 +15,8 @@
 - 配置规范：`config-spec.md`
 - 插件规范：`plugin-spec.md`
 - MCP 规范：`mcp.md`
+- Skills 规范：`skills.md`
+- Agent 模式：`agent-mode.md`
 - GitHub Actions 编排：`ci-workflow.md`
 
 ## 与 XCloudFlow 的关系
